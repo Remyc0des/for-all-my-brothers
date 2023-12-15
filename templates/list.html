@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static', filename = 'static.css')}}" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+
+    {% for incident in data['data'] %}
+
+    <h1>{{ incident['title'] }}</h1>
+    <p>Date: {{ incident['date'] }}</p>
+    <p>City: {{ incident['city'] }}</p>
+    <p>Description: {{ incident['description'] }}</p>
+    <p>Tags: {{ incident['tags'] }}</p>
+
+    {% if incident['links'] %}
+    <p>Videos:</p>
+    <ul>
+        {% for video_link in incident['links'] %}
+        <li><a href="{{ video_link }}" target="_blank">{{ video_link }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <hr>
+    {% endfor %}
+
+</body>
+
+</html>
